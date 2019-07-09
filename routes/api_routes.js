@@ -11,7 +11,6 @@ module.exports  = function (app) {
             const $ = cheerio.load(res.data);
 
          // Search the DOM using jQuery-like features to find articles
-            // $(".wsj-headline-link href")
             // $('#fin-src-res-table td[aria-label="Name"]')
             
             $(".wsj-headline a").each((index, title) => {
