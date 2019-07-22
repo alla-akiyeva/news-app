@@ -3,7 +3,7 @@ const axios = require("axios");
 
 
 module.exports  = function (app) {
-    const db = require("../models/Article");
+    const db = require("../models");
     
     app.get("/scrape", (req, res) => {
 
@@ -40,8 +40,6 @@ module.exports  = function (app) {
                 console.log(err);
             });
 
-            
-
             console.log(articlesArr);
             console.log(articlesArr.length);
 
@@ -51,23 +49,14 @@ module.exports  = function (app) {
         
     });
 
-    app.get("/home", (req, res) => {
-        db.find({})
+    app.get("/", (req, res) => {
+        db.Article.find({})
         .then(article => {
             res.render('index', {article});
         }).catch(err => {
             res.json(err)
         });
     })
-
-    app.get("/articles", (req, res) => {
-        db.find({})
-        .then(article => {
-             json(article);  
-        }).catch(err => {
-            res.json(err)
-        })
-    });
 
     // app.get("/articles/:id", (req, res) => {
     //     db.findOne({_id: req.params.id })
