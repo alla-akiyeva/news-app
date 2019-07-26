@@ -19,10 +19,6 @@ mongoose.connect("mongodb://localhost/news_db",
     function () {
         console.log("connected to server");
 
-        if (process.env.NODE_ENV === "production") {
-            app.use(express.static("client/build"));
-        }
-
         api_routes(app);
 
         app.listen(PORT, () => console.log("Listening on PORT %s", PORT))
