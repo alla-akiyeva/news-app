@@ -1,24 +1,3 @@
-
-{{!-- <table>
-<thead>
-    <th>Headline</th>
-    <th></th>
-</thead>
-<tbody>
-    <tr>
-        <td><a class="waves-effect waves-light btn-large">Scrape News</a></td>
-        <td><a class="waves-effect waves-light btn-large">Clear</a></td>
-    </tr>
-    {{#each article}}
-    <tr>
-        <td><a href="{{this.link}}">{{this.title}}</a></td>
-        <td><a class="btn-small">Save</a></td>
-    </tr>
-    {{/each}}
-
-</tbody>
-</table> --}}
-
 <div class="container">
 
 {{!--Image Card--}}
@@ -51,7 +30,7 @@
 
     <table>
         <tbody>
-            {{#each article}}
+            {{#each articles}}
             <tr>
                 <td><a href="{{this.link}}">{{this.title}}</a></td>
                 <td><a class="btn-small">Save</a></td>

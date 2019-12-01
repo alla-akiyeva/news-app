@@ -1,28 +1,19 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
-
+const db = require("../models");
 
 module.exports  = function (app) {
-    const db = require("../models");
-    
     app.get("/scrape", (req, res) => {
-
         const articlesArr = [];
-
         // Get the html from wsj.com
         axios.get("https://www.wsj.com/news/technology")
         .then(response => {
          // Turn that html into a jQuery like DOM
             const $ = cheerio.load(response.data);
-            
-
             let titlesArr = [];
-
          // Search the DOM using jQuery-like features to find articles
             $(".wsj-headline a.wsj-headline-link").each((index, title) => {
-                
                 const article = {};
-    
                 article.title = $(title).text();
                 article.link = $(title).attr("href");
 
@@ -32,21 +23,25 @@ module.exports  = function (app) {
                 }
             
             });
-            
-            db.remove({})
 
-            db.create(articlesArr) 
-            .catch(err => {
-                console.log(err);
-            });
+            let obj = {
+                articles: articlesArr
+            }
+            
+            // db.remove({})
+
+            // db.Article.create(articlesArr) 
+            // .catch(err => {
+            //     console.log(err);
+            // });
 
             console.log(articlesArr);
             console.log(articlesArr.length);
+            res.render('index', obj);
 
+        }).catch(err => {
+            res.json(err)
         });
-
-        res.render('index', articlesArr);
-        
     });
 
     app.get("/", (req, res) => {

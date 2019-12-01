@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 
 const app = express()
 
-app.engine("handlebars", exphbs())
+app.engine("handlebars", exphbs( {defaultLayout: "main" }))
 app.set("view engine", "handlebars");
 
 if (process.env.NODE_ENV === "production") {
