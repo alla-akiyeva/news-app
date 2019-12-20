@@ -28,12 +28,12 @@ module.exports  = function (app) {
                 articles: articlesArr
             }
             
-            // db.remove({})
+            db.Article.remove({}).exec()
 
-            // db.Article.create(articlesArr) 
-            // .catch(err => {
-            //     console.log(err);
-            // });
+            db.Article.create(articlesArr) 
+            .catch(err => {
+                console.log(err);
+            });
 
             console.log(articlesArr);
             console.log(articlesArr.length);
