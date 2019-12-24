@@ -53,6 +53,19 @@ module.exports  = function (app) {
         });
     })
 
+    app.post("/save", (req, res) => {
+        db.articles.updateOne(
+            { "_id": req.body._id},
+            {"saved": true}
+        )
+        .then(function () {
+            res.send("Article saved!");
+        })
+        .catch(function (err) {
+            res.json(err)
+        })
+    });
+
     // app.get("/articles/:id", (req, res) => {
     //     db.findOne({_id: req.params.id })
     //     .populate("note")
