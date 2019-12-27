@@ -11,9 +11,12 @@ module.exports  = function (app) {
          // Turn that html into a jQuery like DOM
             const $ = cheerio.load(response.data);
             let titlesArr = [];
+        
          // Search the DOM using jQuery-like features to find articles
             $(".wsj-headline a.wsj-headline-link").each((index, title) => {
+            
                 const article = {};
+                article.id = index;
                 article.title = $(title).text();
                 article.link = $(title).attr("href");
 
@@ -28,15 +31,15 @@ module.exports  = function (app) {
                 articles: articlesArr
             }
             
-            db.Article.remove({}).exec()
+            // db.Article.remove({}).exec()
 
-            db.Article.create(articlesArr) 
-            .catch(err => {
-                console.log(err);
-            });
+            // db.Article.create(articlesArr) 
+            // .catch(err => {
+            //     console.log(err);
+            // });
 
-            console.log(articlesArr);
-            console.log(articlesArr.length);
+            // console.log(articlesArr);
+            // console.log(articlesArr.length);
             res.render('index', obj);
 
         }).catch(err => {
@@ -53,7 +56,7 @@ module.exports  = function (app) {
         });
     })
 
-    app.post("/save", (req, res) => {
+    app.post("/save/:id", (req, res) => {
         db.articles.updateOne(
             { "_id": req.body._id},
             {"saved": true}
@@ -65,6 +68,15 @@ module.exports  = function (app) {
             res.json(err)
         })
     });
+
+    app.get("/clear", (req, res) => {
+        db.Article.remove({}).exec()
+        .then( function () {
+            res.render("index");
+        }). catch(err => {
+            res.json(err)
+        });
+    })
 
     // app.get("/articles/:id", (req, res) => {
     //     db.findOne({_id: req.params.id })
