@@ -31,15 +31,15 @@ module.exports  = function (app) {
                 articles: articlesArr
             }
             
-            // db.Article.remove({}).exec()
+            db.Article.remove({}).exec()
 
-            // db.Article.create(articlesArr) 
-            // .catch(err => {
-            //     console.log(err);
-            // });
+            db.Article.create(articlesArr) 
+            .catch(err => {
+                console.log(err);
+            });
 
-            // console.log(articlesArr);
-            // console.log(articlesArr.length);
+            console.log(articlesArr);
+            console.log(articlesArr.length);
             res.render('index', obj);
 
         }).catch(err => {
@@ -73,7 +73,8 @@ module.exports  = function (app) {
     app.get("/clear", (req, res) => {
         db.Article.remove({}).exec()
         .then( function () {
-            res.render("index");
+            //res.render("index");
+            res.redirect("/");
         }). catch(err => {
             res.json(err)
         });

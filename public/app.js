@@ -30,6 +30,8 @@ $(document).ready(function () {
         let articleId = $(this).data("id");
         console.log(articleId);
 
+        $(this).text("Saved ✔")
+
         $.ajax({
             method: "POST",
             url: "/save/" + articleId,
@@ -39,10 +41,9 @@ $(document).ready(function () {
         })
         .then(function(data) {
             console.log(data);
-            $(this).text("Saved ✔")
+            //$(this).text("Saved ✔")
         })
 
-        //$(this).text("Saved ✔")
     })
 
 
