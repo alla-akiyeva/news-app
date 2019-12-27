@@ -57,8 +57,9 @@ module.exports  = function (app) {
     })
 
     app.post("/save/:id", (req, res) => {
-        db.articles.updateOne(
-            { "_id": req.body._id},
+        console.log(req.params);
+        db.Article.updateOne(
+            { "id": req.params.id},
             {"saved": true}
         )
         .then(function () {

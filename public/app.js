@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     
     // "Save" button event
-    $(".btn-small").on("click", function () {
+    $(".save").on("click", function () {
 
         // Grab the id of the article displayed
         // Set "saved" to true in the db
@@ -32,7 +32,10 @@ $(document).ready(function () {
 
         $.ajax({
             method: "POST",
-            url: "/save/" + articleId
+            url: "/save/" + articleId,
+            data: {
+                id: articleId
+            }
         })
         .then(function(data) {
             console.log(data);
