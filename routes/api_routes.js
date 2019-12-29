@@ -31,7 +31,7 @@ module.exports  = function (app) {
                 articles: articlesArr
             }
             
-            db.Article.remove({}).exec()
+            //db.Article.remove({}).exec()
 
             db.Article.create(articlesArr) 
             .catch(err => {
@@ -50,7 +50,7 @@ module.exports  = function (app) {
     app.get("/", (req, res) => {
         db.Article.find({})
         .then(article => {
-            res.render('index', {article});
+            res.render("index", {article});
         }).catch(err => {
             res.json(err)
         });
@@ -72,13 +72,26 @@ module.exports  = function (app) {
 
     app.get("/clear", (req, res) => {
         db.Article.remove({}).exec()
-        .then( function () {
+        .then(() => {
             //res.render("index");
             res.redirect("/");
         }). catch(err => {
             res.json(err)
         });
     })
+
+    app.get("/saved", (req, res) => {
+        db.Article.find({
+            saved: true
+        })
+        .then(article => {
+            res.render("saved", {article});
+        }).catch (err => {
+            res.json(err)
+        });
+    })
+
+
 
     // app.get("/articles/:id", (req, res) => {
     //     db.findOne({_id: req.params.id })

@@ -15,6 +15,14 @@ $(document).ready(function () {
     // "Saved Articles" button event
     $("#savedArticles").on("click", function () {
 
+        $.ajax ({
+            method: "GET",
+            url: "/saved/"
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+
     });
 
     
@@ -43,7 +51,6 @@ $(document).ready(function () {
             console.log(data);
             //$(this).text("Saved ✔")
         })
-
     })
 
 
