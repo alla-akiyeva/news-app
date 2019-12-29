@@ -24,10 +24,9 @@ module.exports  = function (app) {
                     titlesArr.push(article.title);
                     articlesArr.push(article);
                 }
-            
             });
 
-            let obj = {
+            let objScraped = {
                 articles: articlesArr
             }
             
@@ -40,7 +39,7 @@ module.exports  = function (app) {
 
             console.log(articlesArr);
             console.log(articlesArr.length);
-            res.render('index', obj);
+            res.render("index", objScraped);
 
         }).catch(err => {
             res.json(err)
@@ -71,7 +70,9 @@ module.exports  = function (app) {
     });
 
     app.get("/clear", (req, res) => {
-        db.Article.remove({}).exec()
+        db.Article.deleteMany({
+            saved: false
+        })
         .then(() => {
             //res.render("index");
             res.redirect("/");
@@ -84,8 +85,12 @@ module.exports  = function (app) {
         db.Article.find({
             saved: true
         })
-        .then(article => {
-            res.render("saved", {article});
+        .then(articles => {
+            let objSaved = {
+                articles: articles
+            }
+            res.render("saved", objSaved);
+            //res.json(article);
         }).catch (err => {
             res.json(err)
         });
