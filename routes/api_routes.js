@@ -96,21 +96,14 @@ module.exports  = function (app) {
         });
     })
 
-
-
-    // app.get("/articles/:id", (req, res) => {
-    //     db.findOne({_id: req.params.id })
-    //     .populate("note")
-    //     .then(article => {
-    //         res.json(article);
-    //     }).catch(err => {
-    //         res.json(err);
-    //     })
-    // })
-
-    // app.post("/articles/:id", (req, res) =>
-    //     db.
-    // )
+    app.get("delete-article/:id", (req, res) => {
+        db.Article.find({
+            id: req.params.id
+        })
+        .then(() => {
+            
+        })
+    })
     
 }
 
