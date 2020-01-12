@@ -69,6 +69,19 @@ module.exports  = function (app) {
         })
     });
 
+    // app.get("/articles/saved/:id", (req, res) => {
+    //     console.log(req.params);
+    //     db.Article.findOne(
+    //         {"id": req.params.id}
+    //     )
+    //     .then(article => {
+    //         res.render("saved", {article})
+    //     })
+    //     .catch(err => {
+    //         res.json(err)
+    //     });
+    // })
+
     app.get("/clear", (req, res) => {
         db.Article.deleteMany({
             saved: false

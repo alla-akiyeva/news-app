@@ -54,18 +54,25 @@ $(document).ready(function () {
     });
 
     $(".modal-trigger").on("click", function () {
-        console.log("well, at least something's happening");
-        console.log($("#modal1").text());
-        //$("#modal1").modal();
         $(".modal").modal();
+        // var title = $(this).parent().siblings().children().text();
+        var title = $(this).parent().siblings().find($(".title")).text();
+
+        console.log(title);
+
+        // let articleId = $(this).data("id");
+        // console.log(articleId);
+
+        // $.ajax({
+        //     method: "GET",
+        //     url: "/articles/saved/" + articleId,
+        // })
+        // .then(function (data) {
+        //     console.log(data);
+        // })
+
+        $("#modal1").find(".modal-title").text(title);
     })
 
    
-    
-
 });
-
-// $(document).ready(function () {
-//     console.log("here");
-//     $('#modal').modal();
-// })
