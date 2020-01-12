@@ -49,14 +49,13 @@ $(document).ready(function () {
         })
         .then(function(data) {
             console.log(data);
-            //$(this).text("Saved ✔")
+            $(this).text("Saved ✔")
         })
     });
 
     $(".modal-trigger").on("click", function () {
         console.log("well, at least something's happening");
         console.log($("#modal1").text());
-        event.preventDefault();
         //$("#modal1").modal();
         $(".modal").modal();
     })
@@ -65,3 +64,8 @@ $(document).ready(function () {
     
 
 });
+
+// $(document).ready(function () {
+//     console.log("here");
+//     $('#modal').modal();
+// })
