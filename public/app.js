@@ -51,7 +51,17 @@ $(document).ready(function () {
             console.log(data);
             //$(this).text("Saved ✔")
         })
+    });
+
+    $(".modal-trigger").on("click", function () {
+        console.log("well, at least something's happening");
+        console.log($("#modal1").text());
+        event.preventDefault();
+        //$("#modal1").modal();
+        $(".modal").modal();
     })
 
+   
+    
 
 });
