@@ -22,6 +22,9 @@ $(document).ready(function () {
         .then(function (data) {
             console.log(data);
         })
+        .catch (function (err) {
+            console.log(err);
+        })
 
     });
 
@@ -51,7 +54,27 @@ $(document).ready(function () {
             console.log(data);
             $(this).text("Saved ✔")
         })
+        .catch (function (err) {
+            console.log(err);
+        })
     });
+
+    $(".delete").on("click", function () {
+        let articleId = $(this).data("id");
+        console.log("Article id: " + articleId);
+        $(this).text("Deleted");
+
+        $.ajax({
+            method: "DELETE",
+            url: "/delete/" + articleId,
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    })
 
     $(".modal-trigger").on("click", function () {
         $(".modal").modal();
@@ -73,6 +96,4 @@ $(document).ready(function () {
 
         $("#modal1").find(".modal-title").text(title);
     })
-
-   
 });

@@ -102,13 +102,15 @@ module.exports  = function (app) {
         });
     })
 
-    app.get("delete-article/:id", (req, res) => {
-        db.Article.find({
+    app.delete("/delete/:id", (req, res) => {
+        db.Article.deleteOne({
             id: req.params.id
         })
         .then(() => {
-            
-        })
+            res.json("Article deleted!");
+        }).catch (err => {
+            res.json(err)
+        });
     })
     
 }

@@ -24,8 +24,13 @@
           {{#if articles}}
             {{#each articles}}
             <tr>
-                <td><a href="{{this.link}}">{{this.title}}</a></td>
+                {{!-- <td><a href="{{this.link}}">{{this.title}}</a></td>
+                <td><a class="btn-small save" data-id="{{this.id}}">Save</a></td> --}}
+
+                <td><h6>{{this.title}}</h6></td>
+                <td><a class="btn-small view" data-id="{{this.id}}" href="{{this.link}}" target="_blank">View</a></td>
                 <td><a class="btn-small save" data-id="{{this.id}}">Save</a></td>
+                
             </tr>
             {{/each}}
             {{else}}
