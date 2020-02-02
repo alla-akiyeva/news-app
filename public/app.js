@@ -12,6 +12,19 @@ $(document).ready(function () {
     //     })
     // });
 
+    $("#home").on("click", function () {
+        $.ajax ({
+            method: "GET",
+            url: "/",
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    });
+
     // "Saved Articles" button event
     $("#savedArticles").on("click", function () {
 

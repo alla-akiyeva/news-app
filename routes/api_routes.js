@@ -48,8 +48,11 @@ module.exports  = function (app) {
 
     app.get("/", (req, res) => {
         db.Article.find({})
-        .then(article => {
-            res.render("index", {article});
+        .then(articles => {
+            let objArticles = {
+                articles: articles
+            }
+            res.render("index", objArticles);
         }).catch(err => {
             res.json(err)
         });
@@ -80,8 +83,8 @@ module.exports  = function (app) {
             saved: false
         })
         .then(() => {
-            //res.render("index");
-            res.redirect("/");
+            res.render("index");
+            // res.redirect("/");
         }). catch(err => {
             res.json(err)
         });
@@ -96,7 +99,7 @@ module.exports  = function (app) {
                 articles: articles
             }
             res.render("saved", objSaved);
-            //res.json(article);
+            // res.json(article);
         }).catch (err => {
             res.json(err)
         });

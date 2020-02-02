@@ -9,9 +9,9 @@
         <p>WSJ | Tech</p>
       </div>
       <div class="card-action">
-        <a class="waves-effect waves-light btn" href="/scrape">Scrape</a>
+        <a class="waves-effect waves-light btn" href="/">Home</a>
         <a class="waves-effect waves-light btn" id="savedArticles" href="/saved">Saved Articles</a>
-        <a class="waves-effect waves-light btn" href="/clear">Clear</a>
+        {{!-- <a class="waves-effect waves-light btn" href="/clear">Clear</a> --}}
       </div>
     </div>
   </div>
@@ -27,9 +27,12 @@
           {{#each articles}}
           {{!-- {{#if saved}} --}}
           <tr>
-              <td><a class="title" href="{{link}}">{{title}}</a></td>
-              <td><button data-target="modal1" href="#modal1" class="btn-small addComment modal-trigger" data-id="{{id}}">View</button></td>
+              {{!-- <td><a class="title">{{title}}</a></td> --}}
+              <td><h6>{{title}}</h6></td>
+              <td><a class="btn-small view" data-id="{{id}}" href="{{link}}" target="_blank">View</a></td>
+              <td><button data-target="modal1" href="#modal1" class="btn-small addComment modal-trigger" data-id="{{id}}">Comment</button></td>
               <td><a class="btn-small delete" data-id="{{id}}">Delete</a></td>
+              
           </tr>
           
           <!--Modal-->
