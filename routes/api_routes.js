@@ -26,11 +26,12 @@ module.exports  = function (app) {
                 }
             });
 
+
             let objScraped = {
                 articles: articlesArr
             }
             
-            //db.Article.remove({}).exec()
+            db.Article.remove({}).exec()
 
             db.Article.create(articlesArr) 
             .catch(err => {

@@ -3,13 +3,13 @@
 {{!--Image Card--}}
 <div class="row">
   <div class="column">
-    <div class="card blue-grey darken-1">
-      <div class="card-content white-text">
+    <div class="card main">
+      <div class="card-content white-text main">
         <span class="card-title">Mongo Scraper</span>
         <p>WSJ | Tech</p>
       </div>
       <div class="card-action">
-        <a class="waves-effect waves-light btn" href="/">Home</a>
+        <a class="waves-effect waves-light btn-small" id="home" href="/"  style="background-color: lightgray">Home</a>
         <a class="waves-effect waves-light btn" id="savedArticles" href="/saved">Saved Articles</a>
         {{!-- <a class="waves-effect waves-light btn" href="/clear">Clear</a> --}}
       </div>
@@ -25,15 +25,17 @@
           {{#each articles}} --}}
 
           {{#each articles}}
-          {{!-- {{#if saved}} --}}
+          {{#if saved}}
           <tr>
               {{!-- <td><a class="title">{{title}}</a></td> --}}
-              <td><h6>{{title}}</h6></td>
+              <td><h6 class="title">{{title}}</h6></td>
               <td><a class="btn-small view" data-id="{{id}}" href="{{link}}" target="_blank">View</a></td>
               <td><button data-target="modal1" href="#modal1" class="btn-small addComment modal-trigger" data-id="{{id}}">Comment</button></td>
               <td><a class="btn-small delete" data-id="{{id}}">Delete</a></td>
               
           </tr>
+
+
           
           <!--Modal-->
           {{!-- <div id="modal1" class="modal">
@@ -69,7 +71,7 @@
           <!--Modal ends-->
 
           
-          {{!-- {{/if}} --}}
+          {{/if}}
           {{else}}
             <td>You have not saved any articles.</td>
         {{/each}}

@@ -1,0 +1,62 @@
+.row .col.s12 {
+    padding: 0;
+}
+
+.card .card-action.article-buttons {
+    text-align: right;
+    padding: 10px;
+}
+
+.clear-btn, .scrape-btn {
+    background-color: red;
+    border-radius: 30px/24px;
+}
+
+#scrape-clear {
+    padding-left: 10px;
+}
+
+.card.main {
+    /* background-image: url("./photo-1518289646039-3e6c87a5aaf6.jpeg") */
+    background-image: url("./photo-1550353127-b0da3aeaa0ca.jpeg")
+}
+
+.card .card-action {
+    background-color: transparent;
+}
+
+.card .card-title {
+    font-size: 46px;
+    font-weight: 500;
+}
+
+.card .card-content {
+    height: 125px;
+}
+
+.card .card-content p {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+
+#home, #savedArticles {
+    background-color: white;
+    color: black;
+}
+
+.view, .save, .addComment, .delete {
+    background-color: #0986BE;
+}
+
+.view:hover, .save:hover, .addComment:hover, .delete:hover {
+    background-color: #0986BE;
+}
+
+.scrape-btn:hover, .clear-btn:hover {
+    background-color: red;
+}
+
+
+
+
