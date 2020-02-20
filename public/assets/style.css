@@ -22,7 +22,7 @@
 }
 
 .modal {
-    max-height: none;
+    max-height: 90%;
 }
 
 #save-note-btn {
