@@ -2,7 +2,7 @@ const express = require("express")
 const exphbs = require("express-handlebars")
 const PORT = process.env.PORT || 5000
 const api_routes = require("./routes/api_routes")
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const app = express()
 

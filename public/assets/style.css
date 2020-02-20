@@ -21,6 +21,14 @@
     background-image: url("./photo-1550353127-b0da3aeaa0ca.jpeg")
 }
 
+.modal {
+    max-height: none;
+}
+
+#save-note-btn {
+    background-color: #0986BE;
+}
+
 .card .card-action {
     background-color: transparent;
 }

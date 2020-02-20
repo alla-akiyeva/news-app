@@ -93,8 +93,10 @@ $(document).ready(function () {
         $(".modal").modal();
         // var title = $(this).parent().siblings().children().text();
         var title = $(this).parent().siblings().find($(".title")).text();
+        var id = $(this).data("id");
 
         console.log(title);
+        console.log("Id: " + id);
 
         // let articleId = $(this).data("id");
         // console.log(articleId);
@@ -108,5 +110,31 @@ $(document).ready(function () {
         // })
 
         $("#modal1").find(".modal-title").text(title);
+        $("#modal1").find("#save-note-btn").data("id", id);
+    })
+
+    
+
+    $("#save-note-btn").on("click", function () {
+        // Date formatted with Moment.js
+        const date = moment(new Date()).format("MM/DD/YYYY");
+
+        const note =  {};
+        note.articleId = $(this).data("id");
+        note.title = $("#note-title").val();
+        note.date = date; 
+        note.text = $("#note-input").val();
+
+        console.log(note);
+
+
+
+        // $.ajax({
+        //     method: "POST",
+        //     url: "savenote" + articleId,
+        //     data: {
+        //         note: note
+        //     }
+        // })
     })
 });
