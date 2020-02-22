@@ -80,10 +80,13 @@ module.exports  = function (app) {
         console.log("This is params 80: ", req.params);
         console.log("This is body 81: ", req.body);
 
-        db.Article.findOne({
-            id: id
+        db.Article.updateOne(
+            {"id": id},
+            {"note": req.body}
+        )
+        .then(function() {
+            res.send("Note added")
         })
-        .then(db.Note.create(req.body))
         .catch(function(err) {
             console.log(err);
         });

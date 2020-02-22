@@ -91,6 +91,11 @@ $(document).ready(function () {
     })
 
     $(".modal-trigger").on("click", function () {
+        
+        $("#alert").text("");
+        $("#note-title").val("");
+        $("#note-input").val("");
+            
         $(".modal").modal();
         // var title = $(this).parent().siblings().children().text();
         var title = $(this).parent().siblings().find($(".title")).text();
@@ -119,21 +124,21 @@ $(document).ready(function () {
     $("#save-note-btn").on("click", function () {
         // Date formatted with Moment.js
         const date = moment(new Date()).format("MM/DD/YYYY");
+        const articleId = $(this).data("id");
 
         const note =  {};
-            note.articleId = $(this).data("id");
             note.title = $("#note-title").val();
             note.date = date; 
-            note.text = $("#note-input").val();
+            note.body = $("#note-input").val();
 
         console.log(note);
 
-        if ((note.title || note.text) == "") {
+        if ((note.title || note.body) == "") {
             $("#alert").text("Please enter both the note and a title.");
         } else {
             $.ajax({
                 method: "POST",
-                url: "/savenote/" + note.articleId,
+                url: "/savenote/" + articleId,
                 data: {
                     note: note
                 }
@@ -146,6 +151,7 @@ $(document).ready(function () {
             });
 
             $("#alert").text("A note has been added!");
+
         }
 
 
