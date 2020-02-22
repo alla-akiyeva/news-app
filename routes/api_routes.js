@@ -73,10 +73,21 @@ module.exports  = function (app) {
         })
     });
 
-    app.post("/add-notes/:id", (req, res) => {
-        console.log(req.body);
-        db.Note.create(req.body)
-    })
+    app.post("/savenote/:id", (req, res) => {
+        const id = req.params.id;
+        
+        console.log("This is id 79: ", id);
+        console.log("This is params 80: ", req.params);
+        console.log("This is body 81: ", req.body);
+
+        db.Article.findOne({
+            id: id
+        })
+        .then(db.Note.create(req.body))
+        .catch(function(err) {
+            console.log(err);
+        });
+    });
 
 
     app.get("/clear", (req, res) => {

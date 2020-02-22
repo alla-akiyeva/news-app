@@ -52,11 +52,6 @@
 
       <div class="row">
 
-        {{!-- <div class="input-field col s12">
-          <input id="note-title" type="password" class="validate">
-          <label for="note-title">Note Title</label>
-        </div> --}}
-
         <div class="input-field col s12">
           <textarea id="note-title" class="materialize-textarea"></textarea>
           <label for="note-title">Note Title</label>
@@ -68,11 +63,15 @@
           <button class="btn-small waves-effect waves-light" id="save-note-btn" data-id="{{id}}" type="submit" name="action">Save</button>
         </div>
 
+        <div class="col s12">
+          <div id="alert"></div>
+        </div>
+        
       </div>
       
       <!--Previous Notes-->
       <ul class="collection">
-        
+
         <li class="collection-item">
           <span class="title"><h5>And another test title here</h5></span>
           <p>01/11/20</p>

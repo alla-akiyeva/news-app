@@ -1,3 +1,4 @@
+// import { json } from "express";
 
 $(document).ready(function () {
 
@@ -95,8 +96,8 @@ $(document).ready(function () {
         var title = $(this).parent().siblings().find($(".title")).text();
         var id = $(this).data("id");
 
-        console.log(title);
-        console.log("Id: " + id);
+        // console.log(title);
+        // console.log("Id: " + id);
 
         // let articleId = $(this).data("id");
         // console.log(articleId);
@@ -120,21 +121,34 @@ $(document).ready(function () {
         const date = moment(new Date()).format("MM/DD/YYYY");
 
         const note =  {};
-        note.articleId = $(this).data("id");
-        note.title = $("#note-title").val();
-        note.date = date; 
-        note.text = $("#note-input").val();
+            note.articleId = $(this).data("id");
+            note.title = $("#note-title").val();
+            note.date = date; 
+            note.text = $("#note-input").val();
 
         console.log(note);
 
+        if ((note.title || note.text) == "") {
+            $("#alert").text("Please enter both the note and a title.");
+        } else {
+            $.ajax({
+                method: "POST",
+                url: "/savenote/" + note.articleId,
+                data: {
+                    note: note
+                }
+            })
+            .then(function(data) {
+                console.log(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+            $("#alert").text("A note has been added!");
+        }
 
 
-        // $.ajax({
-        //     method: "POST",
-        //     url: "savenote" + articleId,
-        //     data: {
-        //         note: note
-        //     }
-        // })
-    })
+    });
+
 });

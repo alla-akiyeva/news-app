@@ -8,6 +8,10 @@ const app = express()
 
 app.use(express.static("public"))
 
+// Configure body parsing for AJAX requests
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.engine("handlebars", exphbs( {defaultLayout: "main" }))
 app.set("view engine", "handlebars");
 
