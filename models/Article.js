@@ -20,10 +20,10 @@ const ArticleSchema = new Schema({
         required: true,
         default: false
     },
-    note: {
+    notes: [{
         type: Schema.Types.ObjectId,
         ref: "Note"
-    }
+    }]
 });
 
 module.exports = mongoose.model("Article", ArticleSchema)

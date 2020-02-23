@@ -73,23 +73,33 @@ module.exports  = function (app) {
         })
     });
 
-    app.post("/savenote/:id", (req, res) => {
-        const id = req.params.id;
+    // app.post("/savenote/:id", (req, res) => {
+    //     const id = req.params.id;
         
-        console.log("This is id 79: ", id);
-        console.log("This is params 80: ", req.params);
-        console.log("This is body 81: ", req.body);
+    //     console.log("This is id 79: ", id);
+    //     console.log("This is params 80: ", req.params);
+    //     console.log("This is body 81: ", req.body);
 
-        db.Article.updateOne(
-            {"id": id},
-            {"note": req.body}
-        )
-        .then(function() {
-            res.send("Note added")
+    //     db.Article.findOne(
+    //         {"id": id}
+    //     )
+    //     .populate("notes")
+    //     .then(function(dbArticle) {
+    //         res.json(dbArticle)
+    //     })
+    //     .catch(function(err) {
+    //         console.log(err);
+    //     });
+    // });
+
+    app.post("/savenote/", (req, res) => {
+        db.Note.create(req.body)
+        .then(function (data) {
+            res.json(data)
         })
-        .catch(function(err) {
-            console.log(err);
-        });
+        .catch(function (err) {
+            res.json(err);
+        })
     });
 
 

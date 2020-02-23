@@ -138,9 +138,12 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 method: "POST",
-                url: "/savenote/" + articleId,
+                url: "/savenote/",
                 data: {
-                    note: note
+                    articleId: articleId,
+                    title: $("#note-title").val(),
+                    date: date,
+                    body: $("#note-input").val()
                 }
             })
             .then(function(data) {
