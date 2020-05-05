@@ -2,16 +2,33 @@
 
 $(document).ready(function () {
 
-    // "Scrape" button event
-    // $("#scrape").on("click", function () {
-    //     $.ajax({
-    //         method: "GET",
-    //         url: "/scrape"
+    //"Scrape" button event
+    $("#scrape").on("click", function () {
+        $.ajax({
+            method: "GET",
+            url: "/scrape"
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+    });
+
+    // Getting existing comments for an article
+    // $(".addComment").on("click", function () {
+    //     let articleId = $(this).data("id");
+
+    //     $.ajax ({
+    //         method: "GET", 
+    //         url: "/article-notes/" + articleId,
     //     })
     //     .then(function (data) {
     //         console.log(data);
     //     })
+    //     .catch (function (err) {
+    //         console.log(err);
+    //     })
     // });
+
 
     $("#home").on("click", function () {
         $.ajax ({
@@ -53,7 +70,7 @@ $(document).ready(function () {
         // console.log(articleTitle);
 
         let articleId = $(this).data("id");
-        console.log(articleId);
+        //console.log(articleId);
 
         $(this).text("Saved ✔")
 
@@ -65,7 +82,7 @@ $(document).ready(function () {
             }
         })
         .then(function(data) {
-            console.log(data);
+            //console.log(data);
             $(this).text("Saved ✔")
         })
         .catch (function (err) {
@@ -75,7 +92,7 @@ $(document).ready(function () {
 
     $(".delete").on("click", function () {
         let articleId = $(this).data("id");
-        console.log("Article id: " + articleId);
+        // console.log("Article id: " + articleId);
         $(this).text("Deleted");
 
         $.ajax({
@@ -83,7 +100,7 @@ $(document).ready(function () {
             url: "/delete/" + articleId,
         })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
         })
         .catch(function (err) {
             console.log(err);
@@ -101,19 +118,18 @@ $(document).ready(function () {
         var title = $(this).parent().siblings().find($(".title")).text();
         var id = $(this).data("id");
 
-        // console.log(title);
-        // console.log("Id: " + id);
+        let articleId = $(this).data("id");
 
-        // let articleId = $(this).data("id");
-        // console.log(articleId);
-
-        // $.ajax({
-        //     method: "GET",
-        //     url: "/articles/saved/" + articleId,
-        // })
-        // .then(function (data) {
-        //     console.log(data);
-        // })
+        $.ajax ({
+            method: "GET", 
+            url: "/article-notes/" + articleId,
+        })
+        .then(function (data) {
+            console.log(data);
+        })
+        .catch (function (err) {
+            console.log(err);
+        })
 
         $("#modal1").find(".modal-title").text(title);
         $("#modal1").find("#save-note-btn").data("id", id);
@@ -127,10 +143,11 @@ $(document).ready(function () {
         const articleId = $(this).data("id");
 
         const note =  {};
-            note.title = $("#note-title").val();
-            note.date = date; 
-            note.body = $("#note-input").val();
+        note.title = $("#note-title").val();
+        note.date = date; 
+        note.body = $("#note-input").val();
 
+        //
         console.log(note);
 
         if ((note.title || note.body) == "") {
@@ -161,3 +178,4 @@ $(document).ready(function () {
     });
 
 });
+

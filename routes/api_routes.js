@@ -13,8 +13,12 @@ module.exports  = function (app) {
             let titlesArr = [];
         
          // Search the DOM using jQuery-like features to find articles
-            $(".wsj-headline a.wsj-headline-link").each((index, title) => {
+
+            //$(".wsj-headline a.wsj-headline-link").each((index, title) => {
+            $("article .WSJTheme--headline--unZqjb45 a").each((index, title) => {
+                
             
+
                 const article = {};
                 article.id = index;
                 article.title = $(title).text();
@@ -31,15 +35,16 @@ module.exports  = function (app) {
                 articles: articlesArr
             }
             
-            db.Article.remove({}).exec()
+            // db.Article.remove({}).exec()
+            db.Article.deleteMany({});
 
             db.Article.create(articlesArr) 
             .catch(err => {
                 console.log(err);
             });
 
-            console.log(articlesArr);
-            console.log(articlesArr.length);
+            // console.log("articles array" + articlesArr);
+            // console.log(articlesArr.length);
             res.render("index", objScraped);
 
         }).catch(err => {
@@ -60,7 +65,7 @@ module.exports  = function (app) {
     })
 
     app.post("/save/:id", (req, res) => {
-        console.log(req.params);
+        //console.log(req.params);
         db.Article.updateOne(
             { "id": req.params.id},
             {"saved": true}
@@ -115,6 +120,27 @@ module.exports  = function (app) {
         });
     })
 
+    // New query about finding notes associated with a single article
+    app.get("/article-notes/:articleId", (req, res) => {
+
+        db.Note.find({
+            articleId: req.params.articleId
+        })
+        .then(notes => {
+            // let objNotes = {
+            //     notes: notes
+            // }
+            // res.render("saved", objNotes);
+            // console.log(notes.map(x => x*2));
+            
+            //console.log(notes[0].title);
+            res.json(notes);
+        })
+        .catch (err => {
+            res.json(err)
+        });
+    })
+
     app.get("/saved", (req, res) => {
         db.Article.find({
             saved: true
@@ -125,7 +151,8 @@ module.exports  = function (app) {
             }
             res.render("saved", objSaved);
             // res.json(article);
-        }).catch (err => {
+        })
+        .catch (err => {
             res.json(err)
         });
     })
@@ -142,4 +169,6 @@ module.exports  = function (app) {
     })
     
 }
+
+// DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 

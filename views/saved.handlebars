@@ -69,25 +69,35 @@
         
       </div>
       
+
+
       <!--Previous Notes-->
-      <ul class="collection">
+      
+      
+        {{#if notes}}
+          {{#each notes}}
+          <ul class="collection">
+            <li class="collection-item">
+              <span class="title"><h5>{{this.title}}</h5></span>
+              <p>{{this.date}}</p>
+              <p>{{this.body}}</p>
+            </li>
+          </ul>
 
-        <li class="collection-item">
-          <span class="title"><h5>And another test title here</h5></span>
-          <p>01/11/20</p>
-          <p>An actual note here</p>
-        </li>
-
-      </ul>
+          {{/each}}
+          {{else}}
+          <span>No notes have been added yet.</span>
+        {{/if}}
+      
+        
+      
       <!--//Previous Notes-->
+
+
 
     </div>
 
   </div>  
-  <!--//Modal-->
-  
-
-  {{!-- {{/each}} --}}
   
 
     
